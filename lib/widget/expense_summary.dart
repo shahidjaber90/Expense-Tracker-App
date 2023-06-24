@@ -2,7 +2,10 @@ import 'package:expenses/bar%20graph/bar_graph.dart';
 import 'package:expenses/data/expense_data.dart';
 import 'package:expenses/datetime/date_time_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import '../utils/colors.dart';
 
 class ExpenseSummary extends StatelessWidget {
   final DateTime startOfWeek;
@@ -84,11 +87,31 @@ class ExpenseSummary extends StatelessWidget {
     return Consumer<ExpenseData>(
       builder: (context, value, child) => Column(
         children: [
-           Row(
-            children: [
-              const Text('Week Total:'),
-            Text(calculateWeekTotal(value, sunday, monday, tuesday, wednesday, thursday, friday, saturday))
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 12, bottom: 6),
+            child: Row(
+              children: [
+                Text(
+                  'Week Total:',
+                  style: GoogleFonts.lora(
+                      color: ColorConstant.itemNameColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.5,
+                      decorationStyle: TextDecorationStyle.wavy),
+                ),
+                Text(
+                  calculateWeekTotal(value, sunday, monday, tuesday, wednesday,
+                      thursday, friday, saturday),
+                  style: GoogleFonts.lora(
+                      color: ColorConstant.amountColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 1,
+                      decorationStyle: TextDecorationStyle.wavy),
+                )
+              ],
+            ),
           ),
           SizedBox(
             height: 200,

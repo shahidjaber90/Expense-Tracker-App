@@ -1,5 +1,6 @@
 import 'package:expenses/Model/exoense_item.dart';
 import 'package:expenses/data/expense_data.dart';
+import 'package:expenses/utils/colors.dart';
 import 'package:expenses/widget/expense_summary.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,6 +37,7 @@ class _HomePageState extends State<HomePage> {
                   //Expense Name
                   TextField(
                     controller: newExpenseNameController,
+                    textCapitalization: TextCapitalization.words,
                     decoration: const InputDecoration(label: Text('Item Name')),
                   ),
                   // Expense Amount
@@ -114,12 +116,18 @@ class _HomePageState extends State<HomePage> {
         builder: (context, value, child) => Scaffold(
             backgroundColor: Colors.white,
             floatingActionButton: FloatingActionButton(
+              backgroundColor: Colors.black,
+              elevation: 0,
               onPressed: addNewExpense,
-              child: const Icon(Icons.add),
+              child: const Icon(
+                Icons.add,
+                size: 32,
+                color: Colors.white,
+              ),
             ),
             body: ListView(
               children: [
-              const SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 // weekly summary

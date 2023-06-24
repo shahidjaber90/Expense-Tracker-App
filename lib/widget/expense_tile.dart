@@ -1,5 +1,7 @@
+import 'package:expenses/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ExpenseTile extends StatelessWidget {
   final String name;
@@ -36,7 +38,7 @@ class ExpenseTile extends StatelessWidget {
             height: 80,
             decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
                       color: Colors.grey.shade400,
@@ -56,27 +58,41 @@ class ExpenseTile extends StatelessWidget {
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(name),
                       Text(
-                          '${dateTime.day}/${dateTime.month}/${dateTime.year}'),
+                        name,
+                        style: GoogleFonts.lora(
+                            color: ColorConstant.itemNameColor,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 1,
+                            decorationStyle: TextDecorationStyle.wavy),
+                      ),
+                      Text(
+                        '${dateTime.day}/${dateTime.month}/${dateTime.year}',
+                        style: GoogleFonts.lora(
+                            color: ColorConstant.dateColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            wordSpacing: 0.5,
+                            decorationStyle: TextDecorationStyle.wavy),
+                      ),
                     ],
                   ),
-                  Text(amount),
+                  Text(
+                    '${amount}',
+                    style: GoogleFonts.lora(
+                        color: ColorConstant.amountColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        wordSpacing: 0.5,
+                        decorationStyle: TextDecorationStyle.wavy),
+                  ),
                 ],
               ),
             ),
           ),
-        )
-        // ListTile(
-        //   shape: Border.all(
-        //       color: Colors.green.shade300, style: BorderStyle.solid, width: 0.5),
-
-        //   contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-        //   title: Text(name),
-        //   subtitle: Text('${dateTime.day}/${dateTime.month}/${dateTime.year}'),
-        //   trailing: Text(amount),
-        // ),
-        );
+        ));
   }
 }
