@@ -1,0 +1,82 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+
+class ExpenseTile extends StatelessWidget {
+  final String name;
+  final String amount;
+  final DateTime dateTime;
+  void Function(BuildContext)? deleteTapped;
+  ExpenseTile(
+      {super.key,
+      required this.name,
+      required this.amount,
+      required this.dateTime,
+      required this.deleteTapped});
+
+  @override
+  Widget build(BuildContext context) {
+    return Slidable(
+        endActionPane: ActionPane(motion: StretchMotion(), children: [
+          SlidableAction(
+            onPressed: deleteTapped,
+            icon: Icons.delete,
+            backgroundColor: Colors.red,
+            borderRadius: BorderRadius.circular(8),
+          ),
+
+          // SlidableAction(onPressed: deleteTapped,
+          // icon: Icons.edit,
+          // backgroundColor: Colors.green,
+          // borderRadius: BorderRadius.circular(8),
+          // ),
+        ]),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          child: Container(
+            height: 80,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.grey.shade400,
+                      offset: const Offset(4.0, 4.0),
+                      blurRadius: 12.0,
+                      spreadRadius: 1.0),
+                  BoxShadow(
+                      color: Colors.grey.shade400,
+                      offset: const Offset(-4.0, -4.0),
+                      blurRadius: 12.0,
+                      spreadRadius: 1.0),
+                ]),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(name),
+                      Text(
+                          '${dateTime.day}/${dateTime.month}/${dateTime.year}'),
+                    ],
+                  ),
+                  Text(amount),
+                ],
+              ),
+            ),
+          ),
+        )
+        // ListTile(
+        //   shape: Border.all(
+        //       color: Colors.green.shade300, style: BorderStyle.solid, width: 0.5),
+
+        //   contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+        //   title: Text(name),
+        //   subtitle: Text('${dateTime.day}/${dateTime.month}/${dateTime.year}'),
+        //   trailing: Text(amount),
+        // ),
+        );
+  }
+}
