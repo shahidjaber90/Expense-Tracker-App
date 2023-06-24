@@ -35,7 +35,7 @@ class ExpenseTile extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
           child: Container(
-            height: 80,
+            // height: 80,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
@@ -60,14 +60,19 @@ class ExpenseTile extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        name,
-                        style: GoogleFonts.lora(
-                            color: ColorConstant.itemNameColor,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: 1,
-                            decorationStyle: TextDecorationStyle.wavy),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.50,
+                        child: Text(
+                          name,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                          style: GoogleFonts.lora(
+                              color: ColorConstant.itemNameColor,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: 1,
+                              decorationStyle: TextDecorationStyle.wavy),
+                        ),
                       ),
                       Text(
                         '${dateTime.day}/${dateTime.month}/${dateTime.year}',

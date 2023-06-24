@@ -1,8 +1,10 @@
 import 'package:expenses/Model/exoense_item.dart';
 import 'package:expenses/data/expense_data.dart';
 import 'package:expenses/utils/colors.dart';
+import 'package:expenses/widget/Textfield_widget.dart';
 import 'package:expenses/widget/expense_summary.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../widget/expense_tile.dart';
@@ -30,33 +32,52 @@ class _HomePageState extends State<HomePage> {
     showDialog(
         context: context,
         builder: (context) => AlertDialog(
-              title: Text('Add New Expense'),
+              title: Text('Add New Expense',
+                  style: GoogleFonts.lora(
+                      color: Colors.blue,
+                      // fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 1,
+                      decorationStyle: TextDecorationStyle.wavy)),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   //Expense Name
-                  TextField(
-                    controller: newExpenseNameController,
-                    textCapitalization: TextCapitalization.words,
-                    decoration: const InputDecoration(label: Text('Item Name')),
+                  // TextField(
+                  //   controller: newExpenseNameController,
+                  //   textCapitalization: TextCapitalization.words,
+                  //   decoration: const InputDecoration(label: Text('Item Name')),
+                  // ),
+                  TextFieldWidget(
+                      labelText: 'Item Name',
+                      controllerField: newExpenseNameController,
+                      type: TextInputType.text),
+
+                  const SizedBox(
+                    height: 16,
                   ),
                   // Expense Amount
                   Row(
                     children: [
                       Expanded(
-                        child: TextField(
-                          controller: newExpenseAmountController,
-                          keyboardType: TextInputType.number,
-                          decoration:
-                              const InputDecoration(label: Text('Rate')),
-                        ),
+                        child: TextFieldWidget(
+                            labelText: 'Rate',
+                            controllerField: newExpenseAmountController,
+                            type: TextInputType.number),
+                      ),
+                      const SizedBox(
+                        width: 5,
                       ),
                       Expanded(
-                        child: TextField(
-                          controller: newExpenseQuantityController,
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(label: Text('Qty')),
-                        ),
+                        child: TextFieldWidget(
+                            labelText: 'Qty',
+                            controllerField: newExpenseQuantityController,
+                            type: TextInputType.number),
+                        // TextField(
+                        //   controller: newExpenseQuantityController,
+                        //   keyboardType: TextInputType.number,
+                        //   decoration: const InputDecoration(label: Text('Qty')),
+                        // ),
                       ),
                     ],
                   )
